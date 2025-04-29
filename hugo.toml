@@ -1,4 +1,4 @@
-baseURL = 'http://fhello23.github.io/fhola_portfolio/'
+baseURL = 'http://blog.fhola.com/'
 languageCode = 'en-us'
 title = 'fhola'
 theme = 'typo'
