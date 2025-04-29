@@ -1,37 +1,81 @@
+# .github/workflows/deploy.yml
+
 name: Deploy Hugo site to GitHub Pages
 
 on:
+  # Runs on pushes targeting the default branch (usually 'main' or 'master')
   push:
     branches:
-      - main
+      - main # Replace 'main' with your default branch if it's different (e.g., master)
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read        # for checkout
-  pages: write          # to publish
-  id-token: write       # for OIDC (needed by configure-pages)
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# Default Hugo settings
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  deploy:
+  # Build job
+  build:
     runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.125.4 # Specify the Hugo version you use (check with 'hugo version')
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Fetch Hugo themes (use 'true' or 'recursive')
+          fetch-depth: 0         # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3 # Using v3 or later is recommended
         with:
-          hugo-version: '0.116.0'
+          hugo-version: '${{ env.HUGO_VERSION }}'
+          # extended: true # Uncomment if you need the extended Hugo version (for Sass/SCSS)
 
-      - name: Build site
-        run: hugo --minify --destination public
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5 # Use v5 or later
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v3
+      - name: Build with Hugo
+        env:
+          # Set the base URL for GitHub Pages explicitly if needed
+          # HUGO_BASEURL: ${{ steps.pages.outputs.base_url }} # Automatically determines the base URL
+          # Or uncomment and set manually if deploying to a custom domain or specific path:
+          # HUGO_BASEURL: https://<your-username>.github.io/<your-repo-name>/
+          # HUGO_BASEURL: https://<your-custom-domain>/
+        run: |
+          hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/" # Build site generating into ./public
+          echo "Using baseURL: ${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3 # Use v3 or later
         with:
-          path: public
+          # Upload the 'public' directory (Hugo's default output)
+          path: ./public
 
-      - name: Publish to GitHub Pages
-        uses: actions/deploy-pages@v1
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build # Runs only after the build job completes successfully
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # Use v4 or later
