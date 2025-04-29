@@ -61,8 +61,20 @@ url = "/proyectos"
 
 # Syntax highlight on code blocks
 [markup]
-[markup.highlight]
-style = 'algol'
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = 'github'
+    tabWidth = 4
+    wrapperClass = 'highlight'
 
 # Giscus comments
 [params.giscus]

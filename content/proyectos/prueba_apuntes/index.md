@@ -1,7 +1,7 @@
 
 ---
 title: "Prueba Apuntes Clase"
-date: "2025-04-27"
+date: "2025-04-29"
 summary: "Prueba Apuntes Clase"
 description: "Probando syntax highliting"
 toc: true
