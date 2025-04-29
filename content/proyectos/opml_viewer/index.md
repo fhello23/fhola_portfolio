@@ -15,8 +15,6 @@ draft: false
 
 Dale vida a tus archivos OPML y conviértelos en flashcards
 
-29 de Abril, 2025
-
 ¿Tienes mapas mentales de SimpleMind o archivos OPML acumulando polvo digital? ¡Esta app es para ti! Te ayuda a visualizar tus notas y transformarlas en una herramienta de estudio. 🤓
 
 Una app que:
