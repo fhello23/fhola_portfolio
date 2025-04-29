@@ -57,7 +57,7 @@ jobs:
           # HUGO_BASEURL: ${{ steps.pages.outputs.base_url }} # Automatically determines the base URL
           # Or uncomment and set manually if deploying to a custom domain or specific path:
           # HUGO_BASEURL: https://<your-username>.github.io/<your-repo-name>/
-          # HUGO_BASEURL: https://<your-custom-domain>/
+          HUGO_BASEURL: https://fhola.com/
         run: |
           hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/" # Build site generating into ./public
           echo "Using baseURL: ${{ steps.pages.outputs.base_url }}/"
