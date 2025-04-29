@@ -1,4 +1,4 @@
-baseURL = 'http://blog.fhola.com/'
+baseURL = 'https://fhola.com/'
 languageCode = 'en-us'
 title = 'fhola'
 theme = 'typo'
