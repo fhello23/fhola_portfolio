@@ -80,7 +80,7 @@ VS Code es un editor de código fuente ligero pero potente que se ejecuta en su 
 
 ---
 
-### Parte 3: Configuración de VS Code para Python
+### Configuración de VS Code para Python
 
 Ahora, configuremos VS Code para que funcione con Python.
 
