@@ -2,7 +2,7 @@
 ---
 title: "Clase Doctorado UAndes 2025"
 date: "2025-05-08"
-summary: "Guía Clase"
+summary: "Guía acompañamiento curso Python y Napari doctorado UAndes 2025"
 description: "Guía clase python y napari doctorado UAndes 2025"
 toc: true
 readTime: false
@@ -14,11 +14,11 @@ draft: false
 ---
 
 
-# Instalación Python + Visual Studio Code + Jupyter
+## Instalación Python + Visual Studio Code + Jupyter
 
 Cubro la instalación, tanto para Windows como para Mac en un video públicado en el siguiente [link](https://www.youtube.com/). Si prefieres la versión escrita, te dejo este instructivo a continuación:
 
-## Parte 1: Instalación de Python
+### Instalación de Python
 
 Python es un lenguaje de programación versátil. Instalaremos la última versión estable.
 
@@ -57,7 +57,7 @@ Python es un lenguaje de programación versátil. Instalaremos la última versi�
 
 ---
 
-## Parte 2: Instalación de Visual Studio Code (VS Code)
+### Instalación de Visual Studio Code (VS Code)
 
 VS Code es un editor de código fuente ligero pero potente que se ejecuta en su escritorio y está disponible para Windows, macOS y Linux. Tiene un excelente soporte para el desarrollo en Python.
 
@@ -80,7 +80,7 @@ VS Code es un editor de código fuente ligero pero potente que se ejecuta en su 
 
 ---
 
-## Parte 3: Configuración de VS Code para Python
+### Parte 3: Configuración de VS Code para Python
 
 Ahora, configuremos VS Code para que funcione con Python.
 
@@ -92,7 +92,7 @@ Ahora, configuremos VS Code para que funcione con Python.
 
 ---
 
-## Parte 4: Configuración de Jupyter Notebooks en VS Code
+### Configuración de Jupyter Notebooks en VS Code
 
 Los Jupyter Notebooks son documentos interactivos que permiten escribir y ejecutar código, agregar texto, ecuaciones, visualizaciones y más. VS Code tiene un excelente soporte incorporado para Jupyter Notebooks.
 
@@ -117,7 +117,7 @@ Los Jupyter Notebooks son documentos interactivos que permiten escribir y ejecut
 
 ---
 
-## Parte 5: Prueba "Hola Mundo"
+### Prueba Python y Jupyter
 
 Asegurémonos de que todo funcione.
 
@@ -140,5 +140,5 @@ Asegurémonos de que todo funcione.
      print(mensaje)
      ```
    * Presionen `Shift+Enter` para ejecutar la celda.
-   * Deberían ver la salida `¡Hola, estudiantes de medicina, desde una celda de Jupyter Notebook!` mostrada directamente debajo de la celda.
+   * Deberían ver la salida `¡Hola desde una celda de Jupyter Notebook!` mostrada directamente debajo de la celda.
 
