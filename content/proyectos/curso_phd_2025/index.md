@@ -54,8 +54,6 @@ Python es un lenguaje de programación versátil. Instalaremos la última versi�
 
    Si ven los números de versión, ¡Python está instalado correctamente! Si no, intenten reiniciar su computadora y verificar nuevamente. Si los problemas persisten, podrían necesitar reinstalar, asegurándose de haber agregado Python al PATH en Windows.
 
----
-
 ### Instalación de Visual Studio Code (VS Code)
 
 VS Code es un editor de código fuente ligero pero potente que se ejecuta en su escritorio y está disponible para Windows, macOS y Linux. Tiene un excelente soporte para el desarrollo en Python.
@@ -77,8 +75,6 @@ VS Code es un editor de código fuente ligero pero potente que se ejecuta en su 
 **3. Iniciar VS Code:**
    * Abran VS Code desde su carpeta de Aplicaciones (macOS) o Menú Inicio (Windows).
 
----
-
 ### Configuración de VS Code para Python
 
 Ahora, configuremos VS Code para que funcione con Python.
@@ -88,8 +84,6 @@ Ahora, configuremos VS Code para que funcione con Python.
    * En la barra de búsqueda, escriban `Python`.
    * Busquen la extensión llamada **"Python"** publicada por **Microsoft**. Usualmente es el primer resultado y tiene millones de descargas.
    * Hagan clic en el botón **"Install"** (Instalar) para esta extensión.
-
----
 
 ### Configuración de Jupyter Notebooks en VS Code
 
@@ -160,7 +154,6 @@ Napari es una herramienta de visualización rápida, interactiva y multidimensio
 #### 1. Importar las librerías necesarias
 
 ```python
-
 import napari
 
 from skimage import data
@@ -176,7 +169,6 @@ from skimage.segmentation import clear_border
 from skimage.measure import label, regionprops_table
 
 from skimage.morphology import closing, square, remove_small_objects
-
 ```
 
 **Explicación:**
@@ -190,9 +182,7 @@ from skimage.morphology import closing, square, remove_small_objects
 #### 2. Crear un visualizador
 
 ```python
-
 viewer = napari.Viewer()
-
 ```
 
 Este comando abre una ventana interactiva donde podrás visualizar y manipular tus datos. Es como abrir un microscopio digital en tu computadora.
@@ -200,9 +190,7 @@ Este comando abre una ventana interactiva donde podrás visualizar y manipular t
 #### 3. Cargar datos de ejemplo
 
 ```python
-
 viewer.add_image(data.cells3d(), name='celulas')
-
 ```
 
 **¿Qué hace este código?**
@@ -218,36 +206,28 @@ viewer.add_image(data.cells3d(), name='celulas')
 En Napari, cada elemento visual es una "capa" o "layer". Puedes tener múltiples capas superpuestas. Puedes agregar puntos desde el GUI por ejemplo y podremos accederlos desde nuestro notebook:
 
 ```python
-
 # Obtener todas las capas
-
 layers = viewer.layers
 
 print(layers)
-
 ```
 
 **Resultado esperado:**
 
 ```
-
 [<Image layer 'celulas' at 0x35ca7d040>,
 
 <Points layer 'Points' at 0x355315eb0>,
-
 
 ```
 
 #### 5. Examinar información detallada de una capa
 
 ```python
-
 # Seleccionar una capa específica (en este caso, la capa de puntos)
 
 points_layer = viewer.layers[1]
-
-  
-
+ 
 # Obtener información detallada
 
 print(f"Nombre de la capa: {points_layer.name}")
@@ -264,7 +244,6 @@ print(f"Visibilidad: {points_layer.visible}")
 
 print(f"Opacidad: {points_layer.opacity}")
 
-  
 
 # Ver las coordenadas de los puntos
 
@@ -277,7 +256,6 @@ print(points_layer.data)
 **Resultado esperado:**
 
 ```
-
 Nombre de la capa: Points
 
 Tipo de capa: <class 'napari.layers.points.points.Points'>
@@ -357,12 +335,9 @@ Cellpose es una herramienta de inteligencia artificial desarrollada específicam
 #### 1. Importar las librerías necesarias
 
 ```python
-
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context
-
-  
 
 import napari
 
@@ -393,19 +368,15 @@ from skimage.measure import regionprops_table
 #### 2. Crear el visualizador y cargar el modelo
 
 ```python
-
 # Crear el visualizador de Napari
 
 viewer = napari.Viewer()
-
-  
 
 # Configurar y cargar el modelo de Cellpose
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 model = models.Cellpose(model_type="cyto", gpu=False)
-
 ```
 
 
@@ -422,9 +393,7 @@ model = models.Cellpose(model_type="cyto", gpu=False)
 #### 3. Cargar tu imagen
 
 ```python
-
 img = imread("./SUM_N1-0002.tif")
-
 ```
 
 **Importante:** Reemplaza `"./SUM_N1-0002.tif"` con la ruta a tu imagen. Cellpose funciona con formatos comunes como TIFF, PNG, JPG.
@@ -466,12 +435,9 @@ channels=[0, 0], # Canal de citoplasma, canal de núcleo
 #### 5. Visualizar los resultados
 
 ```python
-
 # Añadir la imagen original
 
 viewer.add_image(img, name="Raw image", colormap="gray")
-
-  
 
 # Añadir las máscaras de segmentación
 
@@ -494,7 +460,6 @@ viewer.add_labels(masks, name="Cellpose masks")
 
 
 ```python
-
 props = regionprops_table(
 
 masks,
@@ -534,7 +499,6 @@ df.to_csv("cell_measurements.csv", index=False)
 
 
 ```python
-
 import os
 
 import numpy as np
@@ -543,51 +507,55 @@ from skimage.io import imsave
 
 from skimage.color import label2rgb
 
+import napari
   
-
-# Crear carpeta de salida
+# assume 'viewer' already exists and has your layers
 
 output_dir = "output_pngs"
 
 os.makedirs(output_dir, exist_ok=True)
 
-  
-
-# Exportar cada capa como imagen PNG
 
 for layer in viewer.layers:
 
-data = layer.data
-
-name = layer.name.replace(" ", "_")
-
-outpath = os.path.join(output_dir, f"{name}.png")
-
-  
-
-# Para capas de imagen
-
-if isinstance(layer, napari.layers.Image):
-
-if np.issubdtype(data.dtype, np.floating):
-
-img = (np.clip(data, 0, 1) * 255).astype(np.uint8)
-
-else:
-
-img = data.astype(np.uint8)
-
-imsave(outpath, img)
+	data = layer.data
+	
+	# sanitize layer name for filesystem
+	
+	name = layer.name.replace(" ", "_")
+	
+	outpath = os.path.join(output_dir, f"{name}.png")
 
   
-
-# Para capas de etiquetas (máscaras)
-
-elif isinstance(layer, napari.layers.Labels):
-
-rgb = label2rgb(data, bg_label=0)
-
-imsave(outpath, (rgb * 255).astype(np.uint8))
+	# Image layer: normalize floats to uint8
+	
+	if isinstance(layer, napari.layers.Image):
+	
+		if np.issubdtype(data.dtype, np.floating):
+		
+			img = (np.clip(data, 0, 1) * 255).astype(np.uint8)
+		
+		else:
+		
+			img = data.astype(np.uint8)
+			
+			imsave(outpath, img)
+	
+	# Labels layer: map each integer label to a color
+	
+	elif isinstance(layer, napari.layers.Labels):
+	
+		# background=0 will be black
+		
+		rgb = label2rgb(data, bg_label=0)
+		
+		imsave(outpath, (rgb * 255).astype(np.uint8))
+	
+	else:
+		
+		# skip Points, Shapes, Vectors, etc.
+		
+		print(f"Skipping layer “{layer.name}” of type {type(layer)}")
 
 ```
 
@@ -619,4 +587,3 @@ imsave(outpath, (rgb * 255).astype(np.uint8))
 - Canal verde para núcleos: `[0, 2]`
 
 - Ambos canales: `[1, 2]`
-
