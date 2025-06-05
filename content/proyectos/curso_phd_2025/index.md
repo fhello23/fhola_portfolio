@@ -10,7 +10,7 @@ autonumber: true
 math: false
 showTags: false
 hidePagination: true
-draft: false
+draft: true
 ---
 
 ## Instalación Python + Visual Studio Code + Jupyter
