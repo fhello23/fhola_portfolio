@@ -13,7 +13,6 @@ hidePagination: true
 draft: false
 ---
 
-
 ## Instalación Python + Visual Studio Code + Jupyter
 
 Cubro la instalación, tanto para Windows como para Mac en un video públicado en el siguiente [link](https://www.youtube.com/). Si prefieres la versión escrita, te dejo este instructivo a continuación:
@@ -141,4 +140,483 @@ Asegurémonos de que todo funcione.
      ```
    * Presionen `Shift+Enter` para ejecutar la celda.
    * Deberían ver la salida `¡Hola desde una celda de Jupyter Notebook!` mostrada directamente debajo de la celda.
+
+
+## Introducción a Napari
+
+### ¿Qué es Napari?  
+
+Napari es una herramienta de visualización rápida, interactiva y multidimensional para Python, especialmente diseñada para datos científicos. Es perfecta para analizar imágenes biológicas como microscopía, datos de fluorescencia, y cualquier tipo de imagen científica en 2D, 3D o incluso dimensiones superiores.
+
+#### ¿Por qué usar Napari?  
+
+- **Interactivo**: Puedes explorar tus datos de forma visual e interactiva
+- **Multidimensional**: Maneja datos 2D, 3D, 4D y más dimensiones
+- **Extensible**: Compatible con muchas herramientas de análisis de imágenes
+- **Fácil de usar**: Interfaz intuitiva para científicos
+
+### Primeros pasos con Napari
+
+#### 1. Importar las librerías necesarias
+
+```python
+
+import napari
+
+from skimage import data
+
+import numpy as np
+
+from skimage import data
+
+from skimage.filters import threshold_otsu
+
+from skimage.segmentation import clear_border
+
+from skimage.measure import label, regionprops_table
+
+from skimage.morphology import closing, square, remove_small_objects
+
+```
+
+**Explicación:**
+
+- `napari`: La librería principal para visualización
+
+- `skimage`: Librería de procesamiento de imágenes (scikit-image)
+
+- `numpy`: Para manejo de arrays y datos numéricos
+
+#### 2. Crear un visualizador
+
+```python
+
+viewer = napari.Viewer()
+
+```
+
+Este comando abre una ventana interactiva donde podrás visualizar y manipular tus datos. Es como abrir un microscopio digital en tu computadora.
+
+#### 3. Cargar datos de ejemplo
+
+```python
+
+viewer.add_image(data.cells3d(), name='celulas')
+
+```
+
+**¿Qué hace este código?**
+
+- `data.cells3d()`: Carga un conjunto de datos de ejemplo que contiene células en 3D
+
+- `add_image()`: Añade la imagen al visualizador
+
+- `name='celulas'`: Le da un nombre descriptivo a la capa
+
+#### 4. Trabajar con capas (layers)
+
+En Napari, cada elemento visual es una "capa" o "layer". Puedes tener múltiples capas superpuestas. Puedes agregar puntos desde el GUI por ejemplo y podremos accederlos desde nuestro notebook:
+
+```python
+
+# Obtener todas las capas
+
+layers = viewer.layers
+
+print(layers)
+
+```
+
+**Resultado esperado:**
+
+```
+
+[<Image layer 'celulas' at 0x35ca7d040>,
+
+<Points layer 'Points' at 0x355315eb0>,
+
+
+```
+
+#### 5. Examinar información detallada de una capa
+
+```python
+
+# Seleccionar una capa específica (en este caso, la capa de puntos)
+
+points_layer = viewer.layers[1]
+
+  
+
+# Obtener información detallada
+
+print(f"Nombre de la capa: {points_layer.name}")
+
+print(f"Tipo de capa: {type(points_layer)}")
+
+print(f"Forma de los datos: {points_layer.data.shape}")
+
+print(f"Tipo de datos: {points_layer.data.dtype}")
+
+print(f"Número de puntos: {len(points_layer.data)}")
+
+print(f"Visibilidad: {points_layer.visible}")
+
+print(f"Opacidad: {points_layer.opacity}")
+
+  
+
+# Ver las coordenadas de los puntos
+
+print("Coordenadas de los puntos:")
+
+print(points_layer.data)
+
+```
+
+**Resultado esperado:**
+
+```
+
+Nombre de la capa: Points
+
+Tipo de capa: <class 'napari.layers.points.points.Points'>
+
+Forma de los datos: (4, 4)
+
+Tipo de datos: float64
+
+Número de puntos: 4
+
+Visibilidad: True
+
+Opacidad: 1.0
+
+  
+
+Coordenadas de los puntos:
+
+[Lista con coordenadas de puntos agregados]
+
+```
+
+### Conceptos importantes para biólogos
+
+#### Capas (Layers)
+
+- **Image layers**: Para mostrar imágenes (microscopía, fluorescencia, etc.)
+
+- **Points layers**: Para marcar puntos específicos (células, orgánulos, etc.)
+
+- **Labels layers**: Para segmentación y regiones de interés
+
+- **Shapes layers**: Para dibujar formas geométricas
+
+#### Dimensiones
+
+- **2D**: Imágenes simples (x, y)
+
+- **3D**: Stacks de imágenes o volúmenes (z, y, x)
+
+- **4D**: Series temporales (t, z, y, x)
+
+- **Multi-canal**: Diferentes canales de fluorescencia
+
+#### Interactividad
+
+- Usa el mouse para navegar por las imágenes
+
+- Controles de zoom y paneo
+
+- Ajuste de contraste y brillo
+
+- Navegación por capas en 3D
+
+
+
+## Napari + Cellpose: Segmentación Automática de Células
+
+### ¿Qué es Cellpose?
+
+Cellpose es una herramienta de inteligencia artificial desarrollada específicamente para la segmentación automática de células en imágenes de microscopía. Utiliza redes neuronales entrenadas para identificar y delimitar células individuales, incluso en imágenes complejas con células superpuestas o de formas irregulares.
+
+#### ¿Por qué combinar Napari con Cellpose?
+
+- **Automatización**: Segmentación automática sin necesidad de ajuste manual
+
+- **Precisión**: Modelos entrenados con miles de imágenes biológicas
+
+- **Visualización**: Napari permite visualizar y validar los resultados de segmentación
+
+- **Análisis cuantitativo**: Extracción automática de medidas y propiedades celulares
+
+- **Exportación**: Guarda resultados para análisis posteriores
+
+### Preparación del entorno
+
+#### 1. Importar las librerías necesarias
+
+```python
+
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
+  
+
+import napari
+
+from skimage.io import imread
+
+from cellpose import models
+
+import pandas as pd
+
+from skimage.measure import regionprops_table
+
+```
+
+**Explicación:**
+
+- `ssl`: Configuración para descargar modelos de Cellpose
+
+- `napari`: Visualización interactiva
+
+- `skimage.io`: Lectura de imágenes
+
+- `cellpose.models`: Modelos de segmentación automática
+
+- `pandas`: Manejo de datos tabulares
+
+- `regionprops_table`: Cálculo de propiedades de regiones
+
+#### 2. Crear el visualizador y cargar el modelo
+
+```python
+
+# Crear el visualizador de Napari
+
+viewer = napari.Viewer()
+
+  
+
+# Configurar y cargar el modelo de Cellpose
+
+ssl._create_default_https_context = ssl._create_unverified_context
+
+model = models.Cellpose(model_type="cyto", gpu=False)
+
+```
+
+
+**¿Qué hace este código?**
+
+- `napari.Viewer()`: Abre la interfaz gráfica
+
+- `model_type="cyto"`: Usa el modelo entrenado para citoplasma (ideal para la mayoría de células)
+
+- `gpu=False`: Usa CPU en lugar de GPU (más compatible)
+
+### Análisis paso a paso
+
+#### 3. Cargar tu imagen
+
+```python
+
+img = imread("./SUM_N1-0002.tif")
+
+```
+
+**Importante:** Reemplaza `"./SUM_N1-0002.tif"` con la ruta a tu imagen. Cellpose funciona con formatos comunes como TIFF, PNG, JPG.
+#### 4. Ejecutar la segmentación automática
+
+```python
+
+masks, flows, styles, diams = model.eval(
+
+img,
+
+diameter=75, # Diámetro estimado de las células en píxeles
+
+channels=[0, 0], # Canal de citoplasma, canal de núcleo
+
+)
+
+```
+
+
+**Parámetros clave:**
+
+- `diameter=75`: Tamaño promedio esperado de tus células (ajusta según tu imagen)
+
+- `channels=[0, 0]`: Para imágenes en escala de grises
+
+- `channels=[1, 3]`: Si tienes canales específicos para citoplasma y núcleo
+
+**Resultados:**
+
+- `masks`: Imagen segmentada donde cada célula tiene un número único
+
+- `flows`: Información del flujo de gradientes (para diagnóstico)
+
+- `styles`: Estilos detectados
+
+- `diams`: Diámetros estimados
+
+#### 5. Visualizar los resultados
+
+```python
+
+# Añadir la imagen original
+
+viewer.add_image(img, name="Raw image", colormap="gray")
+
+  
+
+# Añadir las máscaras de segmentación
+
+viewer.add_labels(masks, name="Cellpose masks")
+
+```
+
+
+**¿Qué verás?**
+
+- **Imagen original**: En escala de grises
+
+- **Máscaras coloreadas**: Cada célula con un color diferente
+
+- **Superposición**: Puedes alternar la visibilidad para comparar
+
+### Análisis cuantitativo
+
+#### 6. Extraer medidas de las células
+
+
+```python
+
+props = regionprops_table(
+
+masks,
+
+intensity_image=img,
+
+properties=("label", "area", "mean_intensity")
+
+)
+
+df = pd.DataFrame(props)
+
+df.to_csv("cell_measurements.csv", index=False)
+
+```
+
+
+**¿Qué medidas obtienes?**
+
+- `label`: Identificador único de cada célula
+
+- `area`: Área en píxeles
+
+- `mean_intensity`: Intensidad promedio (brillo)
+
+**Otras propiedades disponibles:**
+
+- `perimeter`: Perímetro de la célula
+
+- `eccentricity`: Qué tan alargada es la célula
+
+- `solidity`: Qué tan sólida es la forma
+
+- `centroid`: Centro de masa de la célula
+
+#### 7. Exportar imágenes para presentaciones
+
+
+```python
+
+import os
+
+import numpy as np
+
+from skimage.io import imsave
+
+from skimage.color import label2rgb
+
+  
+
+# Crear carpeta de salida
+
+output_dir = "output_pngs"
+
+os.makedirs(output_dir, exist_ok=True)
+
+  
+
+# Exportar cada capa como imagen PNG
+
+for layer in viewer.layers:
+
+data = layer.data
+
+name = layer.name.replace(" ", "_")
+
+outpath = os.path.join(output_dir, f"{name}.png")
+
+  
+
+# Para capas de imagen
+
+if isinstance(layer, napari.layers.Image):
+
+if np.issubdtype(data.dtype, np.floating):
+
+img = (np.clip(data, 0, 1) * 255).astype(np.uint8)
+
+else:
+
+img = data.astype(np.uint8)
+
+imsave(outpath, img)
+
+  
+
+# Para capas de etiquetas (máscaras)
+
+elif isinstance(layer, napari.layers.Labels):
+
+rgb = label2rgb(data, bg_label=0)
+
+imsave(outpath, (rgb * 255).astype(np.uint8))
+
+```
+
+### Consejos para optimizar resultados
+#### Ajustar el diámetro
+
+- **Células pequeñas**: diameter=30-50
+
+- **Células medianas**: diameter=50-100
+
+- **Células grandes**: diameter=100-200
+
+- **Automático**: diameter=None (Cellpose estimará)
+
+#### Seleccionar el modelo apropiado
+
+- `"cyto"`: Células generales con citoplasma visible
+
+- `"nuclei"`: Núcleos celulares
+
+- `"cyto2"`: Versión mejorada para citoplasma
+
+#### Configurar canales correctamente
+
+- Imagen en escala de grises: `[0, 0]`
+
+- Canal rojo para citoplasma: `[1, 0]`
+
+- Canal verde para núcleos: `[0, 2]`
+
+- Ambos canales: `[1, 2]`
 
