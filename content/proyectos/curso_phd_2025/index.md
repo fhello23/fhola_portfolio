@@ -10,12 +10,12 @@ autonumber: true
 math: false
 showTags: false
 hidePagination: true
-draft: false
+draft: true
 ---
 
 ## Instalación Python + Visual Studio Code + Jupyter
 
-Cubro la instalación, tanto para Windows como para Mac en un video públicado en el siguiente [link](https://www.youtube.com/). Si prefieres la versión escrita, te dejo este instructivo a continuación:
+Cubro la instalación, tanto para Windows como para Mac en un video públicado en el siguiente [link](https://youtu.be/zJJ92NXcPc0). Si prefieres la versión escrita, te dejo este instructivo a continuación:
 
 ### Instalación de Python
 
