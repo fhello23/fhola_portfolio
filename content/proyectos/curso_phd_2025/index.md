@@ -119,7 +119,7 @@ Asegurémonos de que todo funcione.
    * Guárdenlo como `hola.py`.
    * Escriban el siguiente código Python:
      ```python
-     print("¡Hola, estudiantes de medicina, desde un script de Python!")
+     print("¡Hola, desde un script de Python!")
      ```
    * Guarden el archivo (`Ctrl+S` o `Cmd+S`).
    * Hagan clic derecho en el editor y seleccionen "Run Python File in Terminal" (Ejecutar Archivo Python en Terminal) o hagan clic en el botón de reproducir en la parte superior derecha de la ventana de VS Code.
