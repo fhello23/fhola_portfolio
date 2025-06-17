@@ -1,7 +1,7 @@
 
 ---
 title: "Clase Doctorado UAndes 2025"
-date: "2025-06-16"
+date: "2025-06-17"
 summary: "Guía acompañamiento curso Python y Napari doctorado UAndes 2025"
 description: "Guía clase python y napari doctorado UAndes 2025"
 toc: true
