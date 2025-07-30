@@ -1,0 +1,67 @@
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="{{ .Site.Home.Permalink }}" class="logo">
+            {{ partial "svgs/home.svg" (dict "height" 25 "width" 25) . }}
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                {{ partial "svgs/menu.svg" (dict "height" 25 "width" 25) . }}
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                <li>
+                    <a class="menu-link {{ if or ($currentPage.IsMenuCurrent "main" .)
+                        ($currentPage.HasMenuCurrent "main" .) }}active{{ end }}" href="{{ .URL }}">
+                        {{ .Name }}
+                    </a>
+                    {{ if .HasChildren }}
+                    <ul>
+                        {{ range .Children }}
+                        <li>
+                            <a class="menu-link {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}"
+                                href="{{ .URL }}">
+                                {{ .Name }}
+                            </a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                    {{ end }}
+                </li>
+                {{ end }}
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                <!-- Language Flags -->
+                {{ if .IsTranslated }}
+                    <li class="language-flags">
+                        {{ $pageLang := .Page.Lang}}
+                        {{ range .Page.AllTranslations }}
+                            {{ $translation := .}}
+                            {{ if eq $translation.Lang "es" }}
+                                <a href="{{ $translation.Permalink }}" class="flag-link {{ if eq $pageLang "es" }}active{{ end }}" title="Español" aria-label="Switch to Spanish">
+                                    🇪🇸
+                                </a>
+                            {{ else if eq $translation.Lang "en" }}
+                                <a href="{{ $translation.Permalink }}" class="flag-link {{ if eq $pageLang "en" }}active{{ end }}" title="English" aria-label="Switch to English">
+                                    🇬🇧
+                                </a>
+                            {{ end }}
+                        {{ end }}
+                    </li>
+                    <li class="menu-separator">
+                        <span>|</span>
+                    </li>
+                {{ end }}
+            </ul>
+            <a id="mode" href="#">
+                {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-sunny" "title" "LIGHT") . }}
+                {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-moon" "title" "DARK") . }}
+            </a>
+        </div>
+    </nav>
+</div>
