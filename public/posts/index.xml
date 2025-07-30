@@ -5,16 +5,16 @@
     <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on FHOLA</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>es</language>
     <lastBuildDate>Tue, 17 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>UAndes PhD Course 2025</title>
+      <title>Clase Doctorado UAndes 2025</title>
       <link>http://localhost:1313/posts/curso_phd_2025/</link>
       <pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/curso_phd_2025/</guid>
       
-      <description>Python and Napari course guide for UAndes PhD program 2025</description>
+      <description>Guía acompañamiento curso Python y Napari doctorado UAndes 2025</description>
       
     </item>
     
@@ -25,7 +25,7 @@
       
       <guid>http://localhost:1313/posts/opml_viewer/</guid>
       
-      <description>Viewer and flashcard generator from Simplemind</description>
+      <description>Visor y generador de flashcards desde Simplemind</description>
       
     </item>
     
@@ -36,7 +36,7 @@
       
       <guid>http://localhost:1313/posts/coffee_app/</guid>
       
-      <description>The calculator for the best filtered coffee</description>
+      <description>La calculadora para el mejor café filtrado</description>
       
     </item>
     

@@ -5,7 +5,7 @@ baseURL = 'https://localhost:1313/'
 languageCode = 'en-us'
 
 # This defines how dates are formatted
-defaultContentLanguage = "en"
+defaultContentLanguage = "es"
 
 # Enable emojis globally
 enableEmoji = true
@@ -191,7 +191,7 @@ name = "github"
 url = "https://github.com/fhello23"
 
 [[params.socialIcons]]
-name = "twitter"
+name = "x"
 url = "https://twitter.com/fhola23"
 
 
