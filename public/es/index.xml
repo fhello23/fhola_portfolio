@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on FHOLA</title>
+    <link>http://localhost:1313/es/</link>
+    <description>Recent content in Home on FHOLA</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es</language>
+    <lastBuildDate>Tue, 17 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/es/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Clase Doctorado UAndes 2025</title>
+      <link>http://localhost:1313/es/posts/curso_phd_2025/</link>
+      <pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/es/posts/curso_phd_2025/</guid>
+      
+      <description>Guía acompañamiento curso Python y Napari doctorado UAndes 2025</description>
+      
+    </item>
+    
+    <item>
+      <title>OPML Viewer</title>
+      <link>http://localhost:1313/es/posts/opml_viewer/</link>
+      <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/es/posts/opml_viewer/</guid>
+      
+      <description>Visor y generador de flashcards desde Simplemind</description>
+      
+    </item>
+    
+    <item>
+      <title>Coffee App</title>
+      <link>http://localhost:1313/es/posts/coffee_app/</link>
+      <pubDate>Sat, 26 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/es/posts/coffee_app/</guid>
+      
+      <description>La calculadora para el mejor café filtrado</description>
+      
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/es/pages/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/es/pages/about/</guid>
+      
+      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+Hugo makes use of a variety of open source projects including:
+https://github.com/yuin/goldmark https://github.</description>
+      
+    </item>
+    
+  </channel>
+</rss>
