@@ -67,15 +67,11 @@ theme = "hugo-blog-awesome"
     name = 'Posts'
     url = '/posts/'
     weight = 20
-  [[Languages.en.menu.main]]
-    pageRef="about"
-    name = 'About'
-    url = '/about/'
-    weight = 30
+
 
 [Languages.en.params]
   sitename = "fhola portfolio"
-  defaultColor = "dark" # set color mode: dark, light, auto
+  defaultColor = "auto" # set color mode: dark, light, auto
   # Setting it to 'auto' applies the color scheme based on the visitor's device color preference.If you don't specify anything, ignore this parameter, or leave it blank,
   # the default value is set to 'auto'.
   # You can take a look at layouts/index.html for more information.
@@ -135,15 +131,10 @@ theme = "hugo-blog-awesome"
     name = 'Posts'
     url = '/posts/'
     weight = 20
-  [[Languages.es.menu.main]]
-    pageRef="about"
-    name = 'About'
-    url = '/about/'
-    weight = 30
 
 [Languages.es.params]
   sitename = "fhola portfolio"
-  defaultColor = "dark" # set color mode: dark, light, auto
+  defaultColor = "auto" # set color mode: dark, light, auto
   # Setting it to 'auto' applies the color scheme based on the visitor's device color preference.If you don't specify anything, ignore this parameter, or leave it blank,
   # the default value is set to 'auto'.
   # You can take a look at layouts/index.html for more information.
