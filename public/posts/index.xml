@@ -5,6 +5,40 @@
     <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on FHOLA</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Tue, 17 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UAndes PhD Course 2025</title>
+      <link>http://localhost:1313/posts/curso_phd_2025/</link>
+      <pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/curso_phd_2025/</guid>
+      
+      <description>Python and Napari course guide for UAndes PhD program 2025</description>
+      
+    </item>
+    
+    <item>
+      <title>OPML Viewer</title>
+      <link>http://localhost:1313/posts/opml_viewer/</link>
+      <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/opml_viewer/</guid>
+      
+      <description>Viewer and flashcard generator from Simplemind</description>
+      
+    </item>
+    
+    <item>
+      <title>Coffee App</title>
+      <link>http://localhost:1313/posts/coffee_app/</link>
+      <pubDate>Sat, 26 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/coffee_app/</guid>
+      
+      <description>The calculator for the best filtered coffee</description>
+      
+    </item>
+    
   </channel>
 </rss>

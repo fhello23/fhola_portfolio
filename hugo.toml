@@ -74,7 +74,7 @@ theme = "hugo-blog-awesome"
     weight = 30
 
 [Languages.en.params]
-  sitename = "Awesome hugo blog"
+  sitename = "fhola portfolio"
   defaultColor = "dark" # set color mode: dark, light, auto
   # Setting it to 'auto' applies the color scheme based on the visitor's device color preference.If you don't specify anything, ignore this parameter, or leave it blank,
   # the default value is set to 'auto'.
@@ -99,9 +99,9 @@ theme = "hugo-blog-awesome"
 [Languages.en.params.author]
   avatar = "avatar.jpg" # put the file in assets folder; also ensure that image has same height and width
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
-  intro = "Awesome hugo blog"
+  intro = "fhola.com"
   name = "Francisco Hola"
-  description = "FHOLA Portfolio."
+  description = "A curated collection of my software development projects."
 
 # Allow to override webmanifest options
 [Languages.en.params.webmanifest]
@@ -142,7 +142,7 @@ theme = "hugo-blog-awesome"
     weight = 30
 
 [Languages.es.params]
-  sitename = "Awesome hugo blog"
+  sitename = "fhola portfolio"
   defaultColor = "dark" # set color mode: dark, light, auto
   # Setting it to 'auto' applies the color scheme based on the visitor's device color preference.If you don't specify anything, ignore this parameter, or leave it blank,
   # the default value is set to 'auto'.
@@ -167,9 +167,9 @@ theme = "hugo-blog-awesome"
 [Languages.es.params.author]
   avatar = "avatar.jpg" # put the file in assets folder; also ensure that image has same height and width
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
-  intro = "Awesome hugo blog"
+  intro = "fhola.com"
   name = "Francisco Hola"
-  description = "FHOLA Portfolio."
+  description = "Una colección de mis proyectos de desarrollo de software."
 
 # Allow to override webmanifest options
 [Languages.es.params.webmanifest]
