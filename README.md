@@ -4,7 +4,7 @@ This is the source code for my personal portfolio website, [fhola.com](https://f
 
 ## About
 
-This portfolio showcases my programming projects and educational materials. Built with [Hugo](https://gohugo.io/) and the [Typo theme](https://github.com/tomfran/typo).
+This portfolio showcases my programming projects and educational materials. Built with [Hugo](https://gohugo.io/) and the [Hugo blog awesome](https://github.com/hugo-sid/hugo-blog-awesome).
 
 ## Features
 
