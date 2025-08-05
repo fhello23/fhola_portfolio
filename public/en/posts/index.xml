@@ -6,7 +6,29 @@
     <description>Recent content in Posts on FHOLA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Synapse - AI-Powered Prompt Manager for macOS</title>
+      <link>http://localhost:1313/en/posts/synapse/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/en/posts/synapse/</guid>
+      
+      <description>A native macOS app for organizing prompts, contexts, and knowledge with AI generation capabilities</description>
+      
+    </item>
+    
+    <item>
+      <title>Synapse API - Go-Based RESTful Backend</title>
+      <link>http://localhost:1313/en/posts/synapse_api/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/en/posts/synapse_api/</guid>
+      
+      <description>A Go API for managing Synapse data with template filling capabilities</description>
+      
+    </item>
+    
     <item>
       <title>UAndes PhD Course 2025</title>
       <link>http://localhost:1313/en/posts/curso_phd_2025/</link>

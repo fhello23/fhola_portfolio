@@ -6,7 +6,29 @@
     <description>Recent content in Home on FHOLA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
-    <lastBuildDate>Tue, 17 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Synapse - Gestor de Prompts con IA para macOS</title>
+      <link>http://localhost:1313/posts/synapse/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/synapse/</guid>
+      
+      <description>Una app nativa de macOS para organizar prompts, contextos y conocimiento con capacidades de generación de IA</description>
+      
+    </item>
+    
+    <item>
+      <title>Synapse API - Backend RESTful en Go</title>
+      <link>http://localhost:1313/posts/synapse_api/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/synapse_api/</guid>
+      
+      <description>Una API en Go para gestionar datos de Synapse con capacidades de llenado de plantillas</description>
+      
+    </item>
+    
     <item>
       <title>Clase Doctorado UAndes 2025</title>
       <link>http://localhost:1313/posts/curso_phd_2025/</link>
