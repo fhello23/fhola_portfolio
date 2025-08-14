@@ -1,8 +1,8 @@
 ---
-title: "Introducción al Uso Moderno de LLMs. Uso de API's. Parte 1 - Magister UAndes"
+title: "Introducción al uso moderno de LLMs. APIs y OpenRouter. Parte 1 – Magíster UAndes"
 date: "2025-08-14"
-summary: "Guía acompañamiento curso Python y Napari doctorado UAndes 2025"
-description: "Guía clase python y napari doctorado UAndes 2025"
+summary: "Guía práctica para MEPI y DESG 2025: cómo usar LLMs vía APIs con OpenRouter, ejemplos en Python, respuestas estructuradas y buenas prácticas."
+description: "Introducción paso a paso al uso de LLMs mediante APIs con OpenRouter: instalación, configuración de .env, ejemplos en Python, seguridad y recomendaciones."
 toc: false
 autonumber: true
 math: false
@@ -13,28 +13,37 @@ draft: false
 
 # Introducción
 
-En esta guía para los cursos de postgrado MEPI y DESG 2025 de la Universidad de los Andes, Chile, está encargada de explicar y dejar ejemplos prácticos para introducirnos al mundo de uso de LLM's a través de API's. Para esto, utilizaremos [OpenRouter](https://openrouter.com), servicio que nos permite acceder a la gran mayoría de los modelos disponibles utilizando una API_KEY y código uno, haciendo la experimentación e iteración sencilla. 
+Esta guía, pensada para los cursos de posgrado MEPI y DESG 2025 de la Universidad de los Andes (Chile), explica y deja ejemplos prácticos para introducirnos en el uso de LLMs a través de APIs. Para ello utilizaremos [OpenRouter](https://openrouter.com), un servicio que permite acceder a una gran variedad de modelos mediante una API key y un único SDK, facilitando la experimentación e iteración.
 
-En este ejemplo, utilizaremos python para nuestros ejemplos, pero puedes realizar estas acciones en la mayoría de los lenguajes de programación. Dejo la documentación de OpenRouter [aquí](https://openrouter.ai/docs/quickstart)
+En los ejemplos usaremos Python, pero puedes replicar los pasos en la mayoría de los lenguajes. Documentación oficial de OpenRouter [aquí](https://openrouter.ai/docs/quickstart).
 
 
-## Paso 1: Crear una cuenta y obtener una API Key
-- Ingresa a https://openrouter.ai y crea una cuenta.
+## Paso 1: Crear una cuenta y obtener una API key
+- Ingresa a `https://openrouter.ai` y crea una cuenta.
 - Ve a Dashboard → API Keys → Create.
-- Copia tu clave y guárdala en un lugar seguro (esta clave se usa para autenticarte con el servicio).
-    - Es recomendable agregarle un límite de $ a tu API key por si es comprometida
+- Copia tu clave y guárdala en un lugar seguro (se usa para autenticarte con el servicio).
+    - Recomendación: <span style="color: red; font-weight: bold;">configura un límite de gasto ($) a tu API key por si se ve comprometida.</span>
 
-> ⚠️ Seguridad: Si alguien obtiene tu API KEY, puede utilizarla para hacer requests a la API a tu cargo. Siempre guardala un archivo .env y asegura de nunca compartirla. Si la clave se filtra, bórrala y crea una nueva. Nunca la subas a Git u otros repositorios públicos.
+> ⚠️ Seguridad: Si alguien obtiene tu API key, podrá hacer solicitudes a la API a tu cargo. Guárdala siempre en un archivo `.env` y no la compartas. Si se filtra, elimínala y crea otra. Nunca la subas a Git ni a repositorios públicos.
 
 
-## Paso 2: Instala los paquetes 
+## Paso 2: Crea un archivo .env
+
+En la raíz de tu proyecto, crea un archivo llamado `.env` con tu clave:
+
+```bash
+# .env
+OPENROUTER_API_KEY=sk-or-xxxxxxxxxxxxxxxx
+```
+
+## Paso 3: Instala los paquetes 
 
 ```bash
 pip install openai python-dotenv requests
 ```
 
-## Paso 3: Manos a la obra
-OpenRouter usa una API compatible con OpenAI, así que podemos usar la misma librería de Python, solo cambiando la URL base.
+## Paso 4: Manos a la obra
+OpenRouter expone una API compatible con OpenAI, así que podemos usar la misma librería de Python cambiando la URL base.
 
 ```python
 # archivo: hola_openrouter.py
@@ -49,7 +58,7 @@ client = OpenAI(
 )
 
 resp = client.chat.completions.create(
-    model="openai/gpt-5-nano",  
+    model="openai/gpt-5-nano",  # Cambia por el modelo que prefieras
     messages=[{"role": "user", "content": """
     
            Quiero un dato aleatorio 
@@ -62,6 +71,12 @@ resp = client.chat.completions.create(
 print(resp.choices[0].message.content)
 ```
 
+### Cómo ejecutar
+
+```bash
+python hola_openrouter.py
+```
+
 
 ### Ejemplo de output
 
@@ -69,12 +84,15 @@ print(resp.choices[0].message.content)
 
 
 
-## Paso 4: Outputs Estructurados
+## Paso 5: Respuestas estructuradas (JSON)
 
 En esta sección veremos cómo pedirle al modelo una respuesta en un formato estrictamente estructurado (por ejemplo, JSON). Esto facilita validar, almacenar y consumir los resultados desde tu código. Describiremos la respuesta requerida en formato JSON y luego lo parsearemos en Python para usarlo directamente.
 
 ```python
 import json
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
@@ -82,7 +100,7 @@ client = OpenAI(
 )
 
 resp = client.chat.completions.create(
-    model="openai/gpt-5-nano",  
+    model="google/gemini-2.5-flash",  
     messages=[{"role": "user", "content": """
     
            Quiero un dato aleatorio 
@@ -98,7 +116,22 @@ resp = client.chat.completions.create(
     
     
     """}],
-    response_format={"type": "json_object"}
+    response_format={
+        "type": "json_object",
+        "json_schema": {
+            "name": "EventoMedico",
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "titulo": {"type": "string"},
+                    "fecha": {"type": "string"},
+                    "descripción": {"type": "string"},
+                    "protagonista": {"type": "string"}
+                },
+            }
+        }
+    }
 )
 
 json_content = resp.choices[0].message.content
@@ -117,11 +150,14 @@ print(data)
 ```
 
 
+Hay una manera más moderna y clara de utilizar structured outputs, disponible desde la API de OpenAI. En caso de querer saber más, puedes hacer clíck [aquí](https://platform.openai.com/docs/guides/structured-outputs)
+
+
 ## Comentarios finales
 
-### Como elegir un modelo
+### Cómo elegir un modelo
 
-En la sección de [modelos](https://openrouter.ai/models) de openrouter, tienes la lista completa de todos los modelos disponibles, en donde podrás filtrar según tus requerimientos. Cuando quieras probar con alguno, puedes cambiar el modelo de los ejemplos en el parámetro `model` al modelo que quieras utilizar. Debes pegar el nombre del modelo de la siguiente manera para que haya consistencia con la API de OpenRouter: 
+En la sección de [modelos](https://openrouter.ai/models) de OpenRouter tienes la lista completa de modelos disponibles, con filtros por proveedor, capacidad y costo. Para probar uno, cambia el parámetro `model` en los ejemplos por el identificador exacto del modelo (por ejemplo, `openai/gpt-4o-mini`, `anthropic/claude-3-haiku`, etc.). Asegúrate de pegar el nombre tal como aparece para mantener la consistencia con la API de OpenRouter.
 
 
 ![copy_model](copy_model.png)
@@ -129,9 +165,10 @@ En la sección de [modelos](https://openrouter.ai/models) de openrouter, tienes 
 
 ### Seguridad
 
-- Guarda las claves en .env y nunca en el código.
+- Guarda las claves en `.env` y nunca en el código.
 - Si se filtra, rota la clave inmediatamente.
-- Usa un prompt de sistema si quieres controlar tono, formato o enfoque médico.
-- Guarda en logs el ID del modelo para reproducir resultados.
+- Usa un prompt de sistema si quieres controlar tono, formato o enfoque clínico.
+- Registra el ID del modelo y los parámetros clave para poder reproducir resultados.
+- Evita pegar datos sensibles de pacientes o terceros en los prompts.
 
 
