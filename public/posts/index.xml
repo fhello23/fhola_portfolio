@@ -6,7 +6,18 @@
     <description>Recent content in Posts on FHOLA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es</language>
-    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introducción al Uso Moderno de LLMs. Uso de API&#39;s. Parte 1 - Magister UAndes</title>
+      <link>http://localhost:1313/posts/curso_magister_p1/</link>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/curso_magister_p1/</guid>
+      
+      <description>Guía acompañamiento curso Python y Napari doctorado UAndes 2025</description>
+      
+    </item>
+    
     <item>
       <title>Synapse - Gestor de Prompts con IA para macOS</title>
       <link>http://localhost:1313/posts/synapse/</link>
