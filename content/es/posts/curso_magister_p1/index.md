@@ -158,6 +158,7 @@ Hay una manera más moderna y clara de utilizar structured outputs, disponible d
 ### Cómo elegir un modelo
 
 En la sección de [modelos](https://openrouter.ai/models) de OpenRouter tienes la lista completa de modelos disponibles, con filtros por proveedor, capacidad y costo. Para probar uno, cambia el parámetro `model` en los ejemplos por el identificador exacto del modelo (por ejemplo, `openai/gpt-4o-mini`, `anthropic/claude-3-haiku`, etc.). Asegúrate de pegar el nombre tal como aparece para mantener la consistencia con la API de OpenRouter.
+Los ranking de los modelos, tanto por uso de tokens, participación de mercado y categorías en la sección de [rankings](https://openrouter.ai/rankings) de OpenRouter.
 
 
 ![copy_model](copy_model.png)
